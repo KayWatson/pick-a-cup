@@ -1,0 +1,97 @@
+<!DOCTYPE html/>
+<html>
+<head>
+	<title>Pick-A-Cup</title>
+
+	<link rel="stylesheet" type="text/css" href="css/main.css"/>
+
+	<script src="js/jquery.js" type="text/javascript"></script>
+	<script src="js/easeljs-0.7.0.min.js" type="text/javascript"></script>
+	<script src="js/TweenMax.min.js" type="text/javascript"></script>
+
+	
+</head>
+<body>
+	<div class="main">
+		<h1 class="level">LEVEL 1</h1>
+		<h1 class="score">SCORE: 0</h1>
+		<div class="wrapper">
+			<div id="one" class="cup"></div> 
+			<div id="two" class="cup"></div>
+			<div id="three" class="cup"></div>
+			<div id="ball2"></div>
+			<div id="ball"></div>
+		</div>
+
+		<canvas id="mainCanvas" width="1000" height="600"></canvas>
+	</div>
+<script type="text/javascript">
+		var stage;
+		$(document).ready(function() {
+			var canvas = document.getElementById("mainCanvas");
+			stage = new createjs.Stage(canvas);
+			createjs.Ticker.addEventListener("tick", stage);
+			var cup1 = document.getElementById("one");
+			var cup2 = document.getElementById("two");
+			var cup3 = document.getElementById("three");
+			document.getElementById("ball2").style.visibility="hidden";
+
+			setTimeout(function(){
+				hideBall();
+			}, 1000);	
+
+			setTimeout(function(){
+				shuffleCups();
+			}, 2800);
+			
+			function hideBall(){
+				//all 3 cups go down & ball is covered
+				TweenMax.to(cup1,3,{y:100, ease:Ease.easeOut});
+				TweenMax.to(cup2,3,{y:100, ease:Ease.easeOut});
+				TweenMax.to(cup3,3,{y:100, ease:Ease.easeOut});
+			}
+
+			function shuffleCups(){
+				document.getElementById("ball").style.visibility="hidden";			
+				//cup 1 goes forward and around cup 2
+				TweenMax.to(cup1,.6,{y:105,  repeat: 0, ease:Ease.easeOut, delay: 3});
+				TweenMax.to(cup1,.7,{x:274, repeat: 0, ease:Ease.easeOut, delay: 3.2});
+				TweenMax.to(cup1,.8,{y:100, repeat: 0, ease:Ease.easeOut, delay: 3.4});
+
+				//cup 3 goes behind and around cup 2
+				TweenMax.to(cup3,.6,{y:95, repeat: 0, ease:Ease.easeOut, delay: 3});
+				TweenMax.to(cup3,.7,{x:-274, repeat: 0, ease:Ease.easeOut, delay: 3.2});
+				TweenMax.to(cup3,.8,{y:100, repeat: 0, ease:Ease.easeOut, delay: 3.4});
+
+				//cup 2 & cup 3 switch
+				TweenMax.to(cup2,.6,{y:105, repeat: 0, ease:Ease.easeOut, delay: 3.4});
+				TweenMax.to(cup2,.7,{x:-137, repeat: 0, ease:Ease.easeOut, delay: 3.6});
+				TweenMax.to(cup2,.8,{y:100, repeat: 0, ease:Ease.easeOut, delay: 3.8});
+
+				TweenMax.to(cup3,.6,{y:95, repeat: 0, ease:Ease.easeOut, delay: 3.4});
+				TweenMax.to(cup3,.7,{x:-137, repeat: 0, ease:Ease.easeOut, delay: 3.6});
+				TweenMax.to(cup3,.8,{y:100, repeat: 0, ease:Ease.easeOut, delay: 3.8});
+
+				//cup 3 & cup 1 switch
+				TweenMax.to(cup3,.6,{y:95, repeat: 0, ease:Ease.easeOut, delay: 4});
+				TweenMax.to(cup3,.7,{x:0, repeat: 0, ease:Ease.easeOut, delay: 4.2});
+				TweenMax.to(cup3,.8,{y:100, repeat: 0, ease:Ease.easeOut, delay: 4.6});
+
+				TweenMax.to(cup1,.6,{y:110, repeat: 0, ease:Ease.easeOut, delay: 4});
+				TweenMax.to(cup1,.7,{x:137, repeat: 0, ease:Ease.easeOut, delay: 4.2});
+				TweenMax.to(cup1,.8,{y:100, repeat: 0, ease:Ease.easeOut, delay: 4.6});
+			}
+		 	//click cup to reveal ball
+		 	$('.cup').click(onClickCup);
+				function onClickCup(e) {
+					clickCup(this);
+				}
+				function clickCup(cup){
+					TweenMax.to($(cup), 1, {y:0, top: top + 90});
+					document.getElementById("ball2").style.visibility="visible";
+			}
+		});
+	</script>
+	
+</body>
+</html>

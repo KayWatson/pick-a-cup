@@ -1,0 +1,90 @@
+
+body{
+	margin: 0;
+	background-color: #b6d6dd;
+	color: #ffffff;
+	font-family: arial, helvetica, sans-serif;
+}
+.main {
+	width: 80%;
+	margin:auto;
+}
+
+h1 {
+	font-size: 3em;
+	float: left;
+}
+
+.level{
+	width: 200px;
+}
+
+.score{
+	float: right;
+	width: 230px;
+}
+
+.wrapper{
+	clear: both;
+	width: 412px;
+	height: 300px;
+	position: relative;
+	margin: 0 auto;
+	padding-top: 50px;
+}
+
+/*#one{
+	position:relative;
+	left:0px;
+	top:0px;
+	z-index:0;
+}
+
+#two{
+	position:relative;
+	left:0px;
+	top:0px;
+	z-index:-1;
+}
+
+#three{
+	position:relative;
+	left:0px;
+	top:0px;
+	z-index:-2;
+}*/
+
+.cup{
+	background-image: url('../img/cup.png');
+	background-repeat: no-repeat;
+	width: 122px;
+	height: 227px;
+	padding-right: 15px;
+	float: left;
+}
+
+.cup:last-child{
+	padding-right: 0;
+}
+
+#ball{
+	position: relative;
+	top: 90px;
+	left: 160px;
+	background-image: url('../img/ball.png');
+	background-repeat: no-repeat;
+	width: 75px;
+	height: 75px;
+	z-index:-3;
+}
+
+#ball2{
+	position: relative;
+	top: 170px;
+	left: 25px;
+	background-image: url('../img/ball.png');
+	background-repeat: no-repeat;
+	width: 75px;
+	height: 75px;
+	z-index:-3;
+}
