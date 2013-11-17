@@ -14,7 +14,8 @@
 <body>
 	<div class="main">
 		<h1 class="level">LEVEL 1</h1>
-		<h1 class="score">SCORE: 0</h1>
+		<h1 class="score">SCORE: <span id="points"></span></h1>
+		<div class="watermark"></div>
 		<div class="wrapper">
 			<div id="one" class="cup"></div> 
 			<div id="two" class="cup"></div>
@@ -22,10 +23,11 @@
 			<div id="ball2"></div>
 			<div id="ball"></div>
 		</div>
-
+		<div class="dropshadow blue"></div>
 		<canvas id="mainCanvas" width="1000" height="600"></canvas>
 	</div>
 <script type="text/javascript">
+		var levelScore = 0;
 		var stage;
 		$(document).ready(function() {
 			var canvas = document.getElementById("mainCanvas");
@@ -35,7 +37,7 @@
 			var cup2 = document.getElementById("two");
 			var cup3 = document.getElementById("three");
 			document.getElementById("ball2").style.visibility="hidden";
-
+			
 			setTimeout(function(){
 				hideBall();
 			}, 1000);	
@@ -85,11 +87,18 @@
 		 	$('.cup').click(onClickCup);
 				function onClickCup(e) {
 					clickCup(this);
+					//score keeper
+					if($(this).attr("id") == "two"){
+						levelScore+= 10;
+					} else {
+						levelScore-= 10;
+					}
+					document.getElementById("points").innerHTML=levelScore;					
 				}
 				function clickCup(cup){
 					TweenMax.to($(cup), 1, {y:0, top: top + 90});
-					document.getElementById("ball2").style.visibility="visible";
-			}
+					document.getElementById("ball2").style.visibility="visible";			
+				}				
 		});
 	</script>
 	
